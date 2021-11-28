@@ -1,0 +1,1 @@
+web: gunicorn fusion3.wsgi --log-file -
