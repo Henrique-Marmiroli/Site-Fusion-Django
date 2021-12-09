@@ -1,5 +1,5 @@
 from django.views.generic import FormView
-from .models import Servico, Colaborador
+from .models import Servico, Colaborador, Recursos
 from .forms import ContatoForm
 from django.urls import reverse_lazy
 from django.contrib import messages
@@ -14,6 +14,10 @@ class IndexView(FormView):
         context = super(IndexView, self).get_context_data(**kwargs)
         context['servicos'] = Servico.objects.all()
         context['colaboradores'] = Colaborador.objects.all()
+        features = Recursos.objects.all()
+        n = features.count()
+        context['recursos_e'] = features[:n//2]
+        context['recursos_d'] = features[n//2:]
         return context
 
     def form_valid(self, form, *args, **kwargs):

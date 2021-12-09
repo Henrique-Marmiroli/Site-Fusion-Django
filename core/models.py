@@ -65,3 +65,23 @@ class Colaborador(Base):
 
     def __str__(self):
         return self.nome
+
+
+class Recursos(Base):
+    ICONE_CHOICES = (
+        ('lni-rocket', 'Foguete'),
+        ('lni-laptop-phone', 'Laptop'),
+        ('lni-cog', 'Engrenagem'),
+        ('lni-leaf', 'Folha'),
+        ('lni-layers', 'Camadas'),
+    )
+    recurso = models.CharField('Recurso', max_length=100)
+    descricao = models.TextField('Descrição', max_length=200)
+    icone = models.CharField('Icone', max_length=16, choices=ICONE_CHOICES)
+
+    class Meta:
+        verbose_name = 'Recurso'
+        verbose_name_plural = 'Recursos'
+
+    def __str__(self):
+        return self.recurso
